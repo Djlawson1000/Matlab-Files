@@ -10,8 +10,8 @@ function beta = wave_angle(M, theta, gamma)
     initial_guess = asin(1/M);
 
     % Solve for beta using fsolve
-    beta = fsolve(func, initial_guess);
+    beta = fsolve(func, initial_guess, optimset('Display', 'off'));
 
     % Display the result
-    fprintf('Computed beta: %.4f degrees\n', rad2deg(beta));
+    %fprintf('Computed beta: %.4f degrees\n', rad2deg(beta));
 end
