@@ -1,8 +1,8 @@
 function beta = wave_angle(M, theta, gamma)
     if nargin < 3
-        gamma = 1.4;
+        gamma = 1.362;
     end
-    gamma = 1.4;
+    gamma = 1.362;
     % Define the function to solve
     func = @(beta) tan(deg2rad(theta)) - 2/tan(beta) * ((M * sin(beta))^2 - 1) / (M^2 * (gamma + cos(2 * beta)) + 2);
 

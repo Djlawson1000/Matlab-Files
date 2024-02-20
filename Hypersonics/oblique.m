@@ -1,8 +1,8 @@
 function [P_2, T_2, M2, beta_deg] = oblique(theta, M1, P, T, gamma)
     if nargin < 5
-        gamma = 1.4;
+        gamma = 1.362;
     end
-    gamma = 1.4;
+    gamma = 1.362;
     beta = wave_angle(M1, theta);
     % beta_rad = deg2rad(beta);
     M1_n = M1 * sin(beta);
