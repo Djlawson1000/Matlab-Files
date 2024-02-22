@@ -1,12 +1,12 @@
-cd /Users/jonathandavami/Documents/MATLAB/AAA_Hypersonic_Research/ROTEXT_Jan_2024/BOS/Saved_Frames/FramesPhantom/
+cd /Users/dan/Documents/GitHub/Matlab-Files/'Lab Codes'
 
 clear;
 
 %Folder where you have the Tiff stacks
-cd T29Frames
+cd 'TiffStack Conversion'
 
 % Name of Wind on Tiff stack
-Data = tiffreadVolume('T1.tif');
+Data = tiffreadVolume('tif file name here_frame count.tif');
 
 %% WIND ON
 
@@ -45,7 +45,7 @@ end
 %% REFERENCE
 
 %Name of Wind off (Reference) Tiff Stack
-Data = tiffreadVolume('T29_1_2.tif');
+Data = tiffreadVolume('TXRef.tif');
 
 i = 1;
 I = Data(:,:,i);

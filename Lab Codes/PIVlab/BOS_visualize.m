@@ -23,7 +23,7 @@ end
 %% Plot
 close all
 
-frame = 700;
+frame = 1200;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
