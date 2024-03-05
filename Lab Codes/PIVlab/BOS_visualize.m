@@ -23,7 +23,7 @@ end
 %% Plot
 close all
 
-frame = 600;
+frame = 700;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
@@ -34,14 +34,19 @@ figure
 pcolor(xdisp),shading interp,axis equal, axis tight
 colorbar
 set(gca,'color','k')
-title('X-Displacement');
+title('X-Displacement',FontSize=30);
+xlabel('Non-Dimensional Length',FontSize=24);
+ylabel('Non-Dimensional Length',FontSize=24);
+
 
 %ydisp
 figure
 pcolor(ydisp),shading interp,axis equal, axis tight
 colorbar
 set(gca,'color','k')
-title('Y-Displacement');
+title('Y-Displacement',FontSize=30);
+xlabel('Non-Dimensional Length',FontSize=24);
+ylabel('Non-Dimensional Length',FontSize=24);
 
 
 %MAG
@@ -49,4 +54,6 @@ figure
 pcolor(MAG),shading interp,axis equal, axis tight
 colorbar
 set(gca,'color','k')
-title('Displacement Magnitude');
+title('Displacement Magnitude',FontSize=30);
+xlabel('Non-Dimensional Length',FontSize=24);
+ylabel('Non-Dimensional Length',FontSize=24);
