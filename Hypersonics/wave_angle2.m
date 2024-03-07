@@ -1,4 +1,4 @@
-function [beta_out] = waveAngle(M1,theta1,gamma)
+function [beta_out] = wave_angle2(M1,theta1,gamma)
     
     theta1 = deg2rad(theta1);
 

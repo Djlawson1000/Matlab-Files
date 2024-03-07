@@ -1,4 +1,4 @@
-function [M2,P2,T2] = PMexpansion_M2out(theta1,M1,P1,T1,gamma)
+function [M2,P2,T2] = PM_sol2(theta1,M1,P1,T1,gamma)
     
     theta1 = deg2rad(theta1); 
 

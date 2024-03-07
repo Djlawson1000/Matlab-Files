@@ -28,32 +28,36 @@ MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
 
-
+f = 40;
 %xdisp
 figure
 pcolor(xdisp),shading interp,axis equal, axis tight
-colorbar
-set(gca,'color','k')
-title('X-Displacement',FontSize=30);
-xlabel('Non-Dimensional Length',FontSize=24);
-ylabel('Non-Dimensional Length',FontSize=24);
+c = colorbar;
+set(gca,'color','k',FontSize=f)
+%title('X-Displacement',FontSize=24);
+ylabel('Pixel Index',FontSize=f);
+xlabel('Pixel Index',FontSize=f);
+xticks([20:20:160]);
+ylabel(c,'X-Displacement',FontSize=f)
 
 
 %ydisp
 figure
 pcolor(ydisp),shading interp,axis equal, axis tight
-colorbar
-set(gca,'color','k')
-title('Y-Displacement',FontSize=30);
-xlabel('Non-Dimensional Length',FontSize=24);
-ylabel('Non-Dimensional Length',FontSize=24);
+c = colorbar;
+set(gca,'color','k',FontSize=f)
+title('Y-Displacement',FontSize=f);
+xlabel('Pixel Index',FontSize=f);
+ylabel('Pixel Index',FontSize=f);
+ylabel(c,'Y-Displacement', FontSize=24)
 
 
 %MAG
 figure
 pcolor(MAG),shading interp,axis equal, axis tight
-colorbar
-set(gca,'color','k')
-title('Displacement Magnitude',FontSize=30);
-xlabel('Non-Dimensional Length',FontSize=24);
-ylabel('Non-Dimensional Length',FontSize=24);
+c = colorbar;
+set(gca,'color','k',FontSize=f)
+title('Displacement Magnitude',FontSize=f);
+xlabel('Pixel Index',FontSize=f);
+ylabel('Pixel Index',FontSize=f);
+ylabel(c,'Displacement Magnitude', FontSize=f)

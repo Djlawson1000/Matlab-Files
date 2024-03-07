@@ -1,14 +1,11 @@
-clear;
-close all;
-clc;
-%% Initialization
-% wedge geometry
+%% Constants and Variable Initialization
+% Air foil and Wedge Geometry
 x = [1 1 1 1]; % [m]
 alpha = [5 5 5 5]; % [deg]
 R_le = 0.003; % [m]
 n_points = 40;
 
-% flow conditions
+% atmospheric flow conditions
 M = [5 7 10];
 H = [24.5 29.0 3.8]; % [km]
 Vinf = [1490 2107 3061]; % [m/s]
@@ -16,8 +13,6 @@ Tinf = [221.08 225.48 233.11]; % [K]
 Pinf = [2743.6 1399.6 685.7]; % [Pa]
 T0 = [1326.46 2435.13 4895.31]; % [K]
 AoA = 0; % [deg]
-
-% other constants and definitions
 gamma = 1.362; % [-]
 R = 287; % [J/(kg-K)]
 Pr = 0.715; % Prandtl number
@@ -35,11 +30,10 @@ gm1 = gamma - 1;
 ggm1 = gamma / (gamma - 1);
 s = zeros(length(M),1);
 
-%% Calculat heat flux
-
+%% Heat Flux
 for mach = 1:length(M)
 
-% Calculations: Leading Edge Stagnation Point Heat Flux
+% Leading Edge Stagnation Point
     % Freestream static conditions
     Tst(mach) = T0(mach) * (1 + gm1 / 2 * M(mach)^2)^(-1); % static temp
     P0(mach) = Pinf(mach) * (1 + gm1 / 2 * M(mach)^2)^(ggm1);
@@ -108,12 +102,12 @@ for mach = 1:length(M)
     % lower surface
     if AoA < 0 && abs(AoA) > alpha(3) % expansion fan
         theta = abs(AoA + alpha(3));
-        [M3(mach), P3(mach), T3(mach)] = PMexpansion_M2out(theta,M(mach),...
+        [M3(mach), P3(mach), T3(mach)] = PM_sol2(theta,M(mach),...
             Pinf(mach),Tinf(mach),gamma);
     elseif AoA >= 0 % shock
         theta = AoA + alpha(3);
         [M3(mach),P3(mach),T3(mach)] = ...
-            obliqueShock(theta,M(mach),Pinf(mach),Tinf(mach),gamma);
+            oblique2(theta,M(mach),Pinf(mach),Tinf(mach),gamma);
     end
     
     V3(mach) = M3(mach) * sqrt(R * gamma * T3(mach));

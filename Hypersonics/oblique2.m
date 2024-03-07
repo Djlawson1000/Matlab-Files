@@ -1,6 +1,6 @@
-function [M2,P2,T2] = obliqueShock(theta1,M1,P1,T1,gamma)
+function [M2,P2,T2] = oblique2(theta1,M1,P1,T1,gamma)
 
-    beta_out = waveAngle(M1,theta1,gamma);
+    beta_out = wave_angle2(M1,theta1,gamma);
     beta_out = deg2rad(beta_out);
 
     theta1 = deg2rad(theta1);
