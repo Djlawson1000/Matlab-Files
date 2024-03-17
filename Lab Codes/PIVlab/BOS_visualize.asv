@@ -33,7 +33,7 @@ writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
 writerObj.FrameRate = round(1/t_step);
 
 open(writerObj);
-figure('paperpositionmode', 'auto', 'position', [500 0 1200 1200],'DefaultAxesFontSize',30)
+figure('paperpositionmode', 'auto', 'position', [500 0 1024 1024],'DefaultAxesFontSize',30)
 % Change above brackets accordingly: ['fig position from left of screen' 'fig position from bottomn of screen' 'Resolution X' 'Resolution Y']
 
 t_int = (2200 / ((length(x) - 1))) / 1000;
@@ -48,16 +48,19 @@ f = 40;
 xdisp = (flip(uL(:,:,i)));
 pcolor(xdisp),shading interp,axis equal, axis tight
 
+%set(gca,'color','k',FontSize=f);
 xlabel('Pixel Index',FontSize=f);
 ylabel('Pixel Index',FontSize=f);
 
 xticks([20:20:160]);
 yticks([20:20:160]);
 
+%ylabel(c,'X-Displacement',FontSize=f);
+
 % Set video background color
 
 set(gcf,'color','w');
-set(gca,'color','k');
+set(gca,'color','w');
 
 
 % Insert Running Time Scale, WARNING: i does not appear to coincide with
@@ -68,8 +71,9 @@ title(strcat('t = ', num2str(0.0+(i-1)*t_int),' s'), 'fontsize', 25)
 colorbar
 colormap('jet')
 c = colorbar;
-ylabel(c,'X-Displacement',FontSize=f);
-clim([-1.5 0]) % Adjust this based on the range seen during steady flow of each test
+c.Location = 'eastoutside';
+c.Label.String = "X-Displacement";
+clim([-2 0.5])
 
 % Write Video file
 
