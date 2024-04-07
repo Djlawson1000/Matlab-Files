@@ -83,7 +83,7 @@ toc;
 
 close all
 
-frame = 700;
+frame = 100;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
@@ -94,6 +94,7 @@ f = 40;
 figure
 pcolor(xdisp),shading interp,axis equal, axis tight
 c = colorbar;
+clim([0 2]);
 set(gca,'color','k',FontSize=f)
 %title('X-Displacement',FontSize=24);
 ylabel('Pixel Index',FontSize=f);
@@ -108,6 +109,7 @@ ylabel(c,'X-Displacement',FontSize=f)
 figure
 pcolor(ydisp),shading interp,axis equal, axis tight
 c = colorbar;
+clim([0 2]);
 set(gca,'color','k',FontSize=f)
 %title('Y-Displacement',FontSize=f);
 ylabel('Pixel Index',FontSize=f);
@@ -122,6 +124,7 @@ ylabel(c,'Y-Displacement', FontSize=24)
 figure
 pcolor(MAG),shading interp,axis equal, axis tight
 c = colorbar;
+clim([0 2]);
 set(gca,'color','k',FontSize=f)
 %title('Displacement Magnitude',FontSize=f);
 ylabel('Pixel Index',FontSize=f);
