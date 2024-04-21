@@ -23,7 +23,7 @@ close all; clear; clc;
 
 % Driver Tube (station 4), Gas = Air
 p4 = 82; % [psi]
-t4 = 293; % [K]
+t4 = 297; % [K]
 % t4 = 4.775944444444444e+02;
 gamma4 = 1.4;
 r4 = 287; % [J/(kg*K)]
@@ -40,7 +40,7 @@ a4 = sqrt(gamma4 * r4 * t4); % [m/s]
 p1 = 14.7; % [psi]
 % air_temp_1 = 400; % [F], this can be heated or room temp
 % t1 = (air_temp_1 - 32) * (5/9) + 273.15; % [K]
-t1 = 293;
+t1 = 297;
 gamma1 = 1.4;
 r1 = 287; % [J/(kg*K)]
 a1 = sqrt(gamma1 * r1 * t1); % [m/s]
