@@ -83,7 +83,7 @@ toc;
 
 close all
 
-frame = 1300;
+frame = 600;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
