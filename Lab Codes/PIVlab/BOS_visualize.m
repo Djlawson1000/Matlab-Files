@@ -83,7 +83,7 @@ toc;
 
 close all
 
-frame = 100;
+frame = 1300;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
@@ -133,3 +133,37 @@ xticks([20:20:160]);
 yticks([20:20:160]);
 
 ylabel(c,'Displacement Magnitude', FontSize=f)
+
+%%    mm / Pixel for each Test Run
+
+% T1:  1.02
+% T2:  1.02
+% T3:  2.00 
+% T13: 0.71
+% T14: -
+% T15: -
+% T17: -
+% T18: 0.71
+% T19: 0.763
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
