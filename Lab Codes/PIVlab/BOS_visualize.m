@@ -1,11 +1,11 @@
 %% Load frames
-Mconversion = 1;
+Mconversion = 0.763; % length/Pixel Factor, change per model and adjust tick marks to account for 169 pixels
 col1 = 1; col2 = size(cell2mat(x(1)),2);
 row1 = 1; row2 = size(cell2mat(x(1)),1);
 clear u uL vL MAG rhoxL rhoyL MAG MAG_ALL NO_MEAN Current_uL
 for FRAME = 1:size(v_original,1)
-Displacement_Poisson.x = cell2mat(x(FRAME)).*Mconversion;
-Displacement_Poisson.y = cell2mat(y(FRAME)).*Mconversion;
+% Displacement_Poisson.x = cell2mat(x(FRAME)).*Mconversion;
+% Displacement_Poisson.y = cell2mat(y(FRAME)).*Mconversion;
 Displacement_Poisson.u = cell2mat(u_original(FRAME)).*Mconversion.*1;
 Displacement_Poisson.v =cell2mat(v_original(FRAME)).*Mconversion.*1;
 [Disp] = (Displacement_Poisson);
@@ -20,6 +20,8 @@ if mod(FRAME, 100) == 0
 disp(['Iteration ', num2str(FRAME)]);
 end
 end
+Displacement_Poisson.x = meshgrid(1:size(uL(:,:,FRAME),1),1:size(uL(:,:,FRAME),2))*Mconversion;
+Displacement_Poisson.y = Displacement_Poisson.x';
 
 %% Create X-Displacement Movie
 
@@ -27,7 +29,7 @@ tic;
 close all;
 t_step = 0.05; % (s) time between frames
 t_min = 0; t_max = 25;
-vidname = 'X-Displacement_T#';
+vidname = 'X-Displacement_T18';
 t_Fig = t_min:t_step:t_max;
 writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
 writerObj.FrameRate = round(1/t_step);
@@ -46,13 +48,13 @@ for i = 1:length(x)
 f = 40;
 
 xdisp = (flip(uL(:,:,i)));
-pcolor(xdisp),shading interp,axis equal, axis tight
+pcolor(Displacement_Poisson.x, Displacement_Poisson.y, xdisp),shading interp,axis equal, axis tight
 
-xlabel('Pixel Index',FontSize=f);
-ylabel('Pixel Index',FontSize=f);
+xlabel('X (mm)',FontSize=f);
+ylabel('Y (mm)',FontSize=f);
 
-xticks([20:20:160]);
-yticks([20:20:160]);
+% xticks([20:20:160]);
+% yticks([20:20:160]);
 
 % Set video background color
 
@@ -68,8 +70,8 @@ title(strcat('t = ', num2str(0.0+(i-1)*t_int),' s'), 'fontsize', 25)
 colorbar
 colormap('jet')
 c = colorbar;
-ylabel(c,'X-Displacement',FontSize=f);
-clim([-1.5 0]) % Adjust this based on the range seen during steady flow of each test
+ylabel(c,'X-Displacement (mm)',FontSize=f);
+clim([-1.5 1.5]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
@@ -83,7 +85,7 @@ toc;
 
 close all
 
-frame = 600;
+frame = 900;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
@@ -92,47 +94,47 @@ f = 40;
 
 %xdisp
 figure
-pcolor(xdisp),shading interp,axis equal, axis tight
+pcolor(Displacement_Poisson.x, Displacement_Poisson.y, xdisp),shading interp,axis equal, axis tight
 c = colorbar;
 clim([0 2]);
 set(gca,'color','k',FontSize=f)
 %title('X-Displacement',FontSize=24);
-ylabel('Pixel Index',FontSize=f);
-xlabel('Pixel Index',FontSize=f);
-xticks([20:20:160]);
-yticks([20:20:160]);
+xlabel('X (mm)',FontSize=f);
+ylabel('Y (mm)',FontSize=f);
+% xticks([20:20:160]);
+% yticks([20:20:160]);
 
-ylabel(c,'X-Displacement',FontSize=f)
+ylabel(c,'X-Displacement (mm)',FontSize=f)
 
 
 %ydisp
 figure
-pcolor(ydisp),shading interp,axis equal, axis tight
+pcolor(Displacement_Poisson.x, Displacement_Poisson.y, ydisp),shading interp,axis equal, axis tight
 c = colorbar;
 clim([0 2]);
 set(gca,'color','k',FontSize=f)
 %title('Y-Displacement',FontSize=f);
-ylabel('Pixel Index',FontSize=f);
-xlabel('Pixel Index',FontSize=f);
-xticks([20:20:160]);
-yticks([20:20:160]);
+xlabel('X (mm)',FontSize=f);
+ylabel('Y (mm)',FontSize=f);
+% xticks([20:20:160]);
+% yticks([20:20:160]);
 
-ylabel(c,'Y-Displacement', FontSize=24)
+ylabel(c,'Y-Displacement (mm)', FontSize=f)
 
 
 %MAG
 figure
-pcolor(MAG),shading interp,axis equal, axis tight
+pcolor(Displacement_Poisson.x, Displacement_Poisson.y, MAG),shading interp,axis equal, axis tight
 c = colorbar;
 clim([0 2]);
 set(gca,'color','k',FontSize=f)
 %title('Displacement Magnitude',FontSize=f);
-ylabel('Pixel Index',FontSize=f);
-xlabel('Pixel Index',FontSize=f);
-xticks([20:20:160]);
-yticks([20:20:160]);
+xlabel('X (mm)',FontSize=f);
+ylabel('Y (mm)',FontSize=f);
+% xticks([20:20:160]);
+% yticks([20:20:160]);
 
-ylabel(c,'Displacement Magnitude', FontSize=f)
+ylabel(c,'Displacement Magnitude (mm)', FontSize=f)
 
 %%    mm / Pixel for each Test Run
 
