@@ -57,26 +57,26 @@ set(gca, 'Box', 'off', 'TickDir', 'out', 'TickLength', [.02 .02], ...
 close all
 %Assumption  y and psi are normal to the wall but not really true._________
 % Inlet Conditions_________________________________________________________
- T_inlet = 2000;%K
+ T_in = 2000;%K
  gamma = 1.4;
  R = 287;
- P_inlet = 101325;%Pa
- V_inlet = 340;%m/s
- a_inlet = sqrt(gamma*R*T_inlet);
+ P_in = 101325;%Pa
+ V_in = 340;%m/s
+ a_in = sqrt(gamma*R*T_in);
  Pr_air = 0.73; % Prandtle number for air
- x_inlet = 0.004; % Distance across plate
- rho_inlet = P_inlet/(R*T_inlet);
+ x_in = 0.004; % Distance across plate
+ rho_in = P_in/(R*T_in);
  T_wall = 450; % K
- M_inlet = V_inlet/a_inlet;
-rho_wall = P_inlet/(R*T_wall);
+ M_in = V_in/a_in;
+rho_wall = P_in/(R*T_wall);
  
 % Dynamic viscosity
  mu_wall = sqrt(T_wall).*((1.1E-21).*T_wall.^5 - (4.7E-18).*T_wall.^4+(7.6E-15).*T_wall.^3-(6.3E-12).*T_wall.^2+(3E-9).*T_wall+5.6E-7);
- nu_inlet = mu_wall/rho_wall;
+ nu_in = mu_wall/rho_wall;
 % Cp for air function
- Cp_inlet = (7.9e-17*T_inlet^5 - 1.2e-013*T_inlet^4 - 3.6e-10*T_inlet^3 + 8.4e-7*T_inlet^2 - 0.00035*T_inlet + 1)*1000;
+ Cp_in = (7.9e-17*T_in^5 - 1.2e-013*T_in^4 - 3.6e-10*T_in^3 + 8.4e-7*T_in^2 - 0.00035*T_in + 1)*1000;
 % K for air function
- K = 1.7e-11*T_inlet^3 - 5.1e-8*T_inlet^2 + 0.0001*T_inlet - 0.00053;
+ K = 1.7e-11*T_in^3 - 5.1e-8*T_in^2 + 0.0001*T_in - 0.00053;
 
  % %Computational grid
 j = 1;
@@ -85,13 +85,13 @@ x = xplot;
 y_centerline = 0.0006; %m
 
 %Create the psi space for this entire code
-psi_centerline = y_centerline*V_inlet*rho_inlet;
+psi_centerline = y_centerline*V_in*rho_in;
 dpsi = psi_centerline/50;
 psi = (0:dpsi:psi_centerline);
 
 % INITIAL BOUNDARY LAYER___________________________________________________
 % Compute Boundary layer thickness
-delta = 5.83*sqrt(nu_inlet*x_inlet/V_inlet);
+delta = 5.83*sqrt(nu_in*x_in/V_in);
 %Relationship to blasius boundary layer
 Capdelta = Pr_air^(1/3);
 delta_T = delta*Capdelta;
@@ -112,15 +112,15 @@ for i = 2:length(psi)
     eta(i) = y_from_psi(i)./delta;
     % Blaius polynomial solution
     u_Uinfty(i) = 2*eta(i) - 2* eta(i).^3 + eta(i).^4;
-    u(i) = u_Uinfty(i)*V_inlet;
+    u(i) = u_Uinfty(i)*V_in;
     %TEMPERATURE BOUNDARY PROFILE__________________________________________
     % Nondim parameter to temperaure solution
     eta_T(i) = y_from_psi(i)./delta_T;
     % Nondimesnional temperature expression
     TempNON_BL(i) = 1 - 2*eta_T(i) + 2 * eta_T(i).^3 - eta_T(i).^4;
-    T(i) = TempNON_BL(i)*(T_wall - T_inlet)+T_inlet;
+    T(i) = TempNON_BL(i)*(T_wall - T_in)+T_in;
     %Desnity change
-    rho(i) = P_inlet/(R*T(i));
+    rho(i) = P_in/(R*T(i));
 
     
 end
@@ -136,15 +136,15 @@ ylabel('T (K)','fontsize',20,'fontname','times'); xlabel('y (m)','fontsize',20,'
 figure
 subplot(1,2,1); plot(u_Uinfty,eta,'linewidth',1); grid on
 ylabel('u/U_{\infty}','fontsize',20,'fontname','times'); xlabel('\eta','fontsize',20,'fontname','times')
-subplot(1,2,2); plot(u_Uinfty.*V_inlet,eta.*delta,'linewidth',2); grid on
+subplot(1,2,2); plot(u_Uinfty.*V_in,eta.*delta,'linewidth',2); grid on
 ylabel('u (m/s)','fontsize',20,'fontname','times'); xlabel('y (m)','fontsize',20,'fontname','times')
 
 for i = 1:length(u)
-    if u(i) > V_inlet
-        u(i) = V_inlet;
+    if u(i) > V_in
+        u(i) = V_in;
     end
-    if T(i) > T_inlet
-        T(i) = T_inlet;
+    if T(i) > T_in
+        T(i) = T_in;
     end
 end
 
@@ -163,13 +163,13 @@ close all
 j = 1;
 i = 1;
 
-lengthxgrid = length(x);
-lengthpsigrid = length(psi);
+gridlengthx = length(x);
+gridlengthpsi = length(psi);
 
 %Dynamic viscosity
 mu(j,:) = (1.1e-21.*T(j,:).^5 - 4.7e-18.*T(j,:).^4 + 7.6e-15.*T(j,:).^3 - 6.3e-12.*T(j,:).^2 + 3e-9.*T(j,:) + 5.6e-7).*sqrt(T(j,:)); 
 %Initialize
-rho(j,:) = P_inlet./(R.*T(j,:));
+rho(j,:) = P_in./(R.*T(j,:));
 %Cp for air function
 cp(j,:) = (7.9e-17*T(j,:).^5 - 1.2e-013*T(j,:).^4 - 3.6e-10*T(j,:).^3 + 8.4e-7*T(j,:).^2 - 0.00035.*T(j,:) + 1)*1000;
 % K for air function
@@ -177,7 +177,7 @@ k(j,:) = 1.7e-11*T(j,:).^3 - 5.1e-8*T(j,:).^2 + 0.0001*T(j,:) - 0.00053;
 %Mach number
 a(j,:) = sqrt(gamma * R .* T(j,:));
 M(j,:) = u(j,:)./a(j,:);
-P(j,:) = ones(1,length(psi)).*P_inlet;
+P(j,:) = ones(1,length(psi)).*P_in;
 
 %Plot velocity and temperature profiles before iteration
 figure(20)
@@ -191,19 +191,19 @@ hold on
 
 dx = gradient(x);
 
-P0 = 1/(P_Po2(1)/P_inlet);
+P0 = 1/(P_Po2(1)/P_in);
 P = P0*P_Po2;
 P = [P, P(end)];
 dp_dx = gradient(P(1:end-1))./dx;
 
 
-for j = 1:lengthxgrid
-    for i = 1:lengthpsigrid
+for j = 1:gridlengthx
+    for i = 1:gridlengthpsi
               
         if i == 1 %Wall_____________________________________________________
          
             
-        elseif i <lengthpsigrid(end)%Center__________________________________
+        elseif i <gridlengthpsi(end)%Center__________________________________
             
             A1c = dpsi; B1c = dpsi; C1c = dpsi-dpsi; D1c = 2*dpsi*dpsi;
             A2c = dpsi; B2c = dpsi; C2c = -(dpsi+dpsi); D2c = dpsi*dpsi^2+dpsi^2*dpsi;
@@ -219,7 +219,7 @@ for j = 1:lengthxgrid
             d2T_dpsi2(j,i) = 2*( (A2c*(T(j,i-1))) + (B2c*(T(j,i+1))) + (C2c*(T(j,i))) )/(D2c);
 
          
-        elseif i == lengthpsigrid(end)%Last_________________________________
+        elseif i == gridlengthpsi(end)%Last_________________________________
             
            A1l = -1;           B1l = 0;        C1l = -1;        D1l = -dpsi;
            A2l = dpsi+dpsi;    B2l = -dpsi;    C2l = -dpsi;     D2l = (dpsi+dpsi)*dpsi^2-(dpsi+dpsi)^2*dpsi;
@@ -318,7 +318,7 @@ set(gca, 'FontName', 'Times'); set(gca, 'Box', 'off', 'TickDir', 'out', 'TickLen
 htitle=title('$\textbf{(x = 0.2 \ cm)}$','interpreter','latex');
 %Exit
 subplot(1,5,5)
-plot(uplothere(lengthxgrid,:),ydatathis(lengthxgrid,:)*100,'linewidth',2); grid on
+plot(uplothere(gridlengthx,:),ydatathis(gridlengthx,:)*100,'linewidth',2); grid on
 hXLabel=xlabel('$u$ (m/s)','interpreter','latex'); hYLabel=ylabel('y (cm) ','interpreter','latex');
 set(gca, 'FontName', 'Times'); set(gca, 'Box', 'off', 'TickDir', 'out', 'TickLength', [.02 .02],'XMinorTick', 'on', 'YMinorTick', 'on', 'YGrid', 'on', 'LineWidth', 1, 'fontsize',12)
 htitle=title('$\textbf{Exit (x = 0.3 \ cm)}$','interpreter','latex');
@@ -354,7 +354,7 @@ set(gca, 'FontName', 'Times'); set(gca, 'Box', 'off', 'TickDir', 'out', 'TickLen
 htitle=title('$\textbf{(x = 0.2 \ cm)}$','interpreter','latex');
 %EXIT
 subplot(1,5,5)
-plot(tplothere(lengthxgrid,:),ydatathis(lengthxgrid,:),'linewidth',2); grid on
+plot(tplothere(gridlengthx,:),ydatathis(gridlengthx,:),'linewidth',2); grid on
 hXLabel=xlabel('$T$ (K)','interpreter','latex'); hYLabel=ylabel('y (cm) ','interpreter','latex');
 set(gca, 'FontName', 'Times'); set(gca, 'Box', 'off', 'TickDir', 'out', 'TickLength', [.02 .02],'XMinorTick', 'on', 'YMinorTick', 'on', 'YGrid', 'on', 'LineWidth', 1, 'fontsize',12)
 htitle=title('$\textbf{Exit (x = 0.3 \ cm)}$','interpreter','latex');
@@ -612,7 +612,7 @@ set(gca, 'Box', 'off', 'TickDir', 'out', 'TickLength', [.02 .02], ...
 
 %Create the psi space for this entire code
 y_centerline = 0.0006/100
-psi_centerline = y_centerline*V_inlet*rho_inlet;
+psi_centerline = y_centerline*V_in*rho_in;
 dpsi = psi_centerline/50;
 psi = (0:dpsi:psi_centerline);
 
@@ -620,7 +620,7 @@ xin = linspace(0.00001,0.3/100,300);
 for j = 1:length(xin)
 % INITIAL BOUNDARY LAYER___________________________________________________
 % Compute Boundary layer thickness
-delta(j) = 5.83*sqrt(nu_inlet*xin(j)/V_inlet);
+delta(j) = 5.83*sqrt(nu_in*xin(j)/V_in);
 %Relationship to blasius boundary layer
 Capdelta = Pr_air^(1/3);
 delta_T = delta(j)*Capdelta;
@@ -641,21 +641,21 @@ for i = 2:length(psi)
     eta(i) = y_from_psi(j,i)./delta(j);
     % Blaius polynomial solution
     u_Uinfty(i) = 2*eta(i) - 2* eta(i).^3 + eta(i).^4;
-    u_cube(i,j) = u_Uinfty(i)*V_inlet;
+    u_cube(i,j) = u_Uinfty(i)*V_in;
     %TEMPERATURE BOUNDARY PROFILE__________________________________________
     % Nondim parameter to temperaure solution
     eta_T(i) = y_from_psi(j,i)./delta_T;
     % Nondimesnional temperature expression
     TempNON_BL = 1 - 2*eta_T(i) + 2 * eta_T(i).^3 - eta_T(i).^4;
-    T_cube(i,j) = TempNON_BL*(T_wall - T_inlet)+T_inlet;
-    if u_cube(i,j) > V_inlet
-        u_cube(i,j) = V_inlet;
+    T_cube(i,j) = TempNON_BL*(T_wall - T_in)+T_in;
+    if u_cube(i,j) > V_in
+        u_cube(i,j) = V_in;
     end
-    if T_cube(i,j) > T_inlet
-        T_cube(i,j) = T_inlet;
+    if T_cube(i,j) > T_in
+        T_cube(i,j) = T_in;
     end
     %Desnity change
-    rho(i) = P_inlet/(R*T(i));
+    rho(i) = P_in/(R*T(i));
     a_cube = sqrt(gamma *R*T_cube(i,j));
     M_cube(i,j) = u_cube(i,j)./a_cube;
 end
