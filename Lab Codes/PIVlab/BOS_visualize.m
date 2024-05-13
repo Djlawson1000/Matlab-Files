@@ -1,5 +1,5 @@
 %% Load frames
-Mconversion = 0.763; % length/Pixel Factor, change per model and adjust tick marks to account for 169 pixels
+Mconversion = 0.71; % length/Pixel Factor, change per model and adjust tick marks to account for 169 pixels
 col1 = 1; col2 = size(cell2mat(x(1)),2);
 row1 = 1; row2 = size(cell2mat(x(1)),1);
 clear u uL vL MAG rhoxL rhoyL MAG MAG_ALL NO_MEAN Current_uL
@@ -20,8 +20,8 @@ if mod(FRAME, 100) == 0
 disp(['Iteration ', num2str(FRAME)]);
 end
 end
-Displacement_Poisson.x = meshgrid(1:size(uL(:,:,FRAME),1),1:size(uL(:,:,FRAME),2))*Mconversion;
-Displacement_Poisson.y = Displacement_Poisson.x';
+Displacement_Poisson.x = meshgrid(1:size(uL(:,:,FRAME),2),1:size(uL(:,:,FRAME),1))*Mconversion;
+Displacement_Poisson.y =meshgrid(1:size(uL(:,:,FRAME),1),1:size(uL(:,:,FRAME),2))'*Mconversion;
 
 %% Create X-Displacement Movie
 
@@ -96,8 +96,9 @@ f = 40;
 figure
 pcolor(Displacement_Poisson.x, Displacement_Poisson.y, xdisp),shading interp,axis equal, axis tight
 c = colorbar;
-clim([0 2]);
+clim([-1.5 1]);
 set(gca,'color','k',FontSize=f)
+set(gcf,'color','w');
 %title('X-Displacement',FontSize=24);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
@@ -113,6 +114,7 @@ pcolor(Displacement_Poisson.x, Displacement_Poisson.y, ydisp),shading interp,axi
 c = colorbar;
 clim([0 2]);
 set(gca,'color','k',FontSize=f)
+set(gcf,'color','w');
 %title('Y-Displacement',FontSize=f);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
@@ -128,6 +130,7 @@ pcolor(Displacement_Poisson.x, Displacement_Poisson.y, MAG),shading interp,axis 
 c = colorbar;
 clim([0 2]);
 set(gca,'color','k',FontSize=f)
+set(gcf,'color','w');
 %title('Displacement Magnitude',FontSize=f);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
