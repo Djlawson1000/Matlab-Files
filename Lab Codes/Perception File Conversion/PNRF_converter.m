@@ -31,7 +31,7 @@
 % all the files counted for that handle in sequential order from 1--999. 
 clc; clear; close all
 
-blocks={'Test'};%,'kcal','dcal','aftertest'
+blocks={'Dcal'};%,'kcal','dcal','aftertest'
 pnrf_converter(blocks);
  
 function []=pnrf_converter(blocks)
