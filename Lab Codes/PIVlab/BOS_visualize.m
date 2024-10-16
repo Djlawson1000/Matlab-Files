@@ -71,7 +71,7 @@ colorbar
 colormap('hot')
 c = colorbar;
 ylabel(c,'X-Displacement (mm)',FontSize=f);
-clim([0.1 0.5]) % Adjust this based on the range seen during steady flow of each test
+clim([-8 3]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
@@ -128,7 +128,7 @@ colorbar
 colormap('hot')
 c = colorbar;
 ylabel(c,'Y-Displacement (mm)',FontSize=f);
-%clim([0.1 0.5]) % Adjust this based on the range seen during steady flow of each test
+clim([0 0.2]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
@@ -186,7 +186,7 @@ colorbar
 colormap('gray')
 c = colorbar;
 ylabel(c,'Displacement Magnitude (mm)',FontSize=f);
-%clim([1 6]) % Adjust this based on the range seen during steady flow of each test
+clim([0 0.2]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
