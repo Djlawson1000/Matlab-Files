@@ -29,9 +29,10 @@ tic;
 close all;
 t_step = 0.05; % (s) time between frames
 t_min = 0; t_max = 25;
-vidname = 'X-Displacement_T35';
+vidname = 'X-Displacement_T47';
 t_Fig = t_min:t_step:t_max;
-writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
+%writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
+writerObj = VideoWriter(['/Users/dan/Desktop/Lab Data/"Test Campaign #4"', vidname]);
 writerObj.FrameRate = round(1/t_step);
 
 open(writerObj);
@@ -71,7 +72,7 @@ colorbar
 colormap('hot')
 c = colorbar;
 ylabel(c,'X-Displacement (mm)',FontSize=f);
-clim([-8 3]) % Adjust this based on the range seen during steady flow of each test
+clim([-0.3 0.3]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
