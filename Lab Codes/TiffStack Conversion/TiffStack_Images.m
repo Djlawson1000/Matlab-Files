@@ -1,4 +1,6 @@
-cd C:\Users\dlawson6\Desktop\'Matlab Files'\'Lab Codes'
+%cd C:\Users\dlawson6\Desktop\'Matlab Files'\'Lab Codes'
+
+cd /Users/dan/Documents/GitHub/'Matlab-Files'/'Lab Codes'
 
 clear;
 
@@ -6,7 +8,7 @@ clear;
 cd 'TiffStack Conversion'
 
 % Name of Wind on Tiff stack
-Data = tiffreadVolume('T46_1400.tif');
+Data = tiffreadVolume('T47_1100.tif');
 
 %% WIND ON
 
@@ -45,7 +47,7 @@ end
 %% REFERENCE
 
 %Name of Wind off (Reference) Tiff Stack
-Data = tiffreadVolume('T46Ref.tif');
+Data = tiffreadVolume('T47Ref.tif');
 
 i = 1;
 I = Data(:,:,i);
