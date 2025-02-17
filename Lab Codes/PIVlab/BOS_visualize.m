@@ -29,10 +29,10 @@ tic;
 close all;
 t_step = 0.05; % (s) time between frames
 t_min = 0; t_max = 25;
-vidname = 'X-Displacement_T47';
+vidname = 'X-Displacement';
 t_Fig = t_min:t_step:t_max;
 %writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
-writerObj = VideoWriter(['/Users/dan/Desktop/Lab Data/"Test Campaign #4"', vidname]);
+writerObj = VideoWriter(['/Users/dan/Documents/Lab Data/"Test Campaign #4"', vidname]);
 writerObj.FrameRate = round(1/t_step);
 
 open(writerObj);
@@ -69,10 +69,10 @@ set(gca,'color','k');
 title(strcat('t = ', num2str(0.0+(i-1)*t_int),' s'), 'fontsize', 25)
 
 colorbar
-colormap('hot')
+colormap('gray')
 c = colorbar;
 ylabel(c,'X-Displacement (mm)',FontSize=f);
-clim([-0.3 0.3]) % Adjust this based on the range seen during steady flow of each test
+%clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
@@ -87,7 +87,7 @@ tic;
 close all;
 t_step = 0.05; % (s) time between frames
 t_min = 0; t_max = 25;
-vidname = 'Y-Displacement_T35';
+vidname = 'Y-Displacement';
 t_Fig = t_min:t_step:t_max;
 writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
 writerObj.FrameRate = round(1/t_step);
@@ -129,7 +129,7 @@ colorbar
 colormap('hot')
 c = colorbar;
 ylabel(c,'Y-Displacement (mm)',FontSize=f);
-clim([0 0.2]) % Adjust this based on the range seen during steady flow of each test
+%clim([0 0.2]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 
@@ -145,7 +145,7 @@ tic;
 close all;
 t_step = 0.05; % (s) time between frames
 t_min = 0; t_max = 25;
-vidname = 'Disp Magnitude_T35';
+vidname = 'Disp Magnitude';
 t_Fig = t_min:t_step:t_max;
 writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
 writerObj.FrameRate = round(1/t_step);
@@ -187,7 +187,7 @@ colorbar
 colormap('gray')
 c = colorbar;
 ylabel(c,'Displacement Magnitude (mm)',FontSize=f);
-clim([0 0.2]) % Adjust this based on the range seen during steady flow of each test
+%clim([0 0.2]) % Adjust this based on the range seen during steady flow of each test
 
 % Write Video file
 

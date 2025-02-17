@@ -8,7 +8,7 @@ clear;
 cd 'TiffStack Conversion'
 
 % Name of Wind on Tiff stack
-Data = tiffreadVolume('T47_1100.tif');
+Data = tiffreadVolume('T80_1100.tif');
 
 %% WIND ON
 
