@@ -1,5 +1,5 @@
 %% Load frames
-Mconversion = 2.74; % was 0.71 length/Pixel Factor, change per model and adjust tick marks to account for pixel count
+Mconversion = 1; % was 0.71 length/Pixel Factor, change per model and adjust tick marks to account for pixel count
 col1 = 1; col2 = size(cell2mat(x(1)),2);
 row1 = 1; row2 = size(cell2mat(x(1)),1);
 clear u uL vL MAG rhoxL rhoyL MAG MAG_ALL NO_MEAN Current_uL
@@ -36,7 +36,7 @@ writerObj = VideoWriter(['C:\Users\dlawson6\Desktop\Movies', vidname]);
 writerObj.FrameRate = round(1/t_step);
 
 open(writerObj);
-figure('paperpositionmode', 'auto', 'position', [500 0 1200 1200],'DefaultAxesFontSize',30)
+figure('paperpositionmode', 'auto', 'position', [500 0 1280 1400],'DefaultAxesFontSize',30)
 % Change above brackets accordingly: ['fig position from left of screen' 'fig position from bottomn of screen' 'Resolution X' 'Resolution Y']
 
 t_int = (2200 / ((length(x) - 1))) / 1000;
@@ -202,7 +202,7 @@ toc;
 
 close all
 
-frame = 1250;
+frame = 1100;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
@@ -213,10 +213,10 @@ f = 40;
 figure
 pcolor(Displacement_Poisson.x, Displacement_Poisson.y, xdisp),shading interp,axis equal, axis tight
 c = colorbar;
-%clim([0.1 0.5]);
+clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
-%title('X-Displacement',FontSize=24);
+title('T78 - 1.5 in Up Stream',FontSize=24);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
 % xticks([20:20:160]);
@@ -229,7 +229,7 @@ ylabel(c,'X-Displacement (mm)',FontSize=f)
 figure
 pcolor(Displacement_Poisson.x, Displacement_Poisson.y, ydisp),shading interp,axis equal, axis tight
 c = colorbar;
-%clim([0.1 0.5]);
+clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
 %title('Y-Displacement',FontSize=f);
@@ -245,7 +245,7 @@ ylabel(c,'Y-Displacement (mm)', FontSize=f)
 figure
 pcolor(Displacement_Poisson.x, Displacement_Poisson.y, MAG),shading interp,axis equal, axis tight
 c = colorbar;
-%clim([0.1 0.5]);
+clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
 %title('Displacement Magnitude',FontSize=f);
