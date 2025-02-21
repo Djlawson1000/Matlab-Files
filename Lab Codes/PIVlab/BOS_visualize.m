@@ -202,11 +202,11 @@ toc;
 
 close all
 
-frame = 1100;
+frame = 350;
 MAG = (flip(MAG_ALL(:,:,frame)));
 xdisp = (flip(uL(:,:,frame)));
 ydisp = (flip(vL(:,:,frame)));
-
+run = 'T79 - 1.5 in Up Stream';
 f = 40;
 
 %xdisp
@@ -216,7 +216,7 @@ c = colorbar;
 clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
-title('T78 - 1.5 in Up Stream',FontSize=24);
+title(run,FontSize=24);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
 % xticks([20:20:160]);
@@ -232,7 +232,7 @@ c = colorbar;
 clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
-%title('Y-Displacement',FontSize=f);
+title(run,FontSize=f);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
 % xticks([20:20:160]);
@@ -248,7 +248,7 @@ c = colorbar;
 clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
-%title('Displacement Magnitude',FontSize=f);
+title(run,FontSize=f);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
 % xticks([20:20:160]);

@@ -1,6 +1,6 @@
-%cd C:\Users\dlawson6\Desktop\'Matlab Files'\'Lab Codes'
+cd C:\Users\dlawson6\Desktop\'Matlab Files'\'Lab Codes'
 
-cd /Users/dan/Documents/GitHub/'Matlab-Files'/'Lab Codes'
+%cd /Users/dan/Documents/GitHub/'Matlab-Files'/'Lab Codes'
 
 clear;
 
