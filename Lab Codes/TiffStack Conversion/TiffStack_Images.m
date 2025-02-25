@@ -8,7 +8,11 @@ clear;
 cd 'TiffStack Conversion'
 
 % Name of Wind on Tiff stack
-Data = tiffreadVolume('T80_1100.tif');
+Data = tiffreadVolume('T78_2200.tif');
+
+% If extracting tiff files to append at the end of another set, use this
+
+append = 0;
 
 %% WIND ON
 
@@ -32,13 +36,13 @@ for i = 1:1:n
 
 
     if i <10
-        imwrite(I,['_000' int2str(i), '.tiff']);
+        imwrite(I,['_000' int2str(i + append), '.tiff']); % remove 000 if needed for append to work
     elseif i <100
-        imwrite(I,['_00' int2str(i), '.tiff']);
+        imwrite(I,['_00' int2str(i + append), '.tiff']);
     elseif i <1000
-        imwrite(I,['_0' int2str(i), '.tiff']);
+        imwrite(I,['_0' int2str(i + append), '.tiff']);
     elseif i< 10000
-        imwrite(I,['_' int2str(i), '.tiff']);
+        imwrite(I,['_' int2str(i + append), '.tiff']);
     end
 
     disp(i)
