@@ -211,7 +211,7 @@ f = 40;
 
 %xdisp
 figure
-pcolor(Displacement_Poisson.x + 200, Displacement_Poisson.y + 90, xdisp),shading interp,axis equal, axis tight % add values next to the poisson components to shift axes up/down left/right
+pcolor(Displacement_Poisson.x + 200, Displacement_Poisson.y + 90, xdisp),shading interp,axis equal, axis tight
 c = colorbar;
 clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
@@ -220,7 +220,7 @@ title(run,FontSize=24);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
 xticks([20:20:380]); 
-yticks([20:20:380]);
+yticks([20:20:]);
 
 ylabel(c,'X-Displacement (mm)',FontSize=f)
 
