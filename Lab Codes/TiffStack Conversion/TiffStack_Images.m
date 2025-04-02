@@ -1,6 +1,6 @@
-%cd C:\Users\dlawson6\Desktop\'Matlab Files'\'Lab Codes'
+cd C:\Users\dlawson6\Desktop\'Matlab Files'\'Lab Codes'
 
-cd /Users/dan/Documents/GitHub/'Matlab-Files'/'Lab Codes'
+%cd /Users/dan/Documents/GitHub/'Matlab-Files'/'Lab Codes'
 
 clear;
 
@@ -8,7 +8,7 @@ clear;
 cd 'TiffStack Conversion'
 
 % Name of Wind on Tiff stack
-Data = tiffreadVolume('T80_1100.tif');
+Data = tiffreadVolume('T70_1101_2201.tif');
 
 %% WIND ON
 
@@ -32,11 +32,11 @@ for i = 1:1:n
 
 
     if i <10
-        imwrite(I,['_000' int2str(i), '.tiff']);
+        imwrite(I,['_110' int2str(i), '.tiff']);
     elseif i <100
-        imwrite(I,['_00' int2str(i), '.tiff']);
+        imwrite(I,['_11' int2str(i), '.tiff']);
     elseif i <1000
-        imwrite(I,['_0' int2str(i), '.tiff']);
+        imwrite(I,['_1' int2str(i), '.tiff']);
     elseif i< 10000
         imwrite(I,['_' int2str(i), '.tiff']);
     end

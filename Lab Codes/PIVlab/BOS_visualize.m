@@ -1,5 +1,5 @@
 %% Load frames
-Mconversion = 1; % was 0.71 length/Pixel Factor, change per model and adjust tick marks to account for pixel count
+Mconversion = 4.25; % was 0.71 length/Pixel Factor, change per model and adjust tick marks to account for pixel count
 col1 = 1; col2 = size(cell2mat(x(1)),2);
 row1 = 1; row2 = size(cell2mat(x(1)),1);
 clear u uL vL MAG rhoxL rhoyL MAG MAG_ALL NO_MEAN Current_uL
@@ -49,7 +49,7 @@ for i = 1:length(x)
 f = 40;
 
 xdisp = (flip(uL(:,:,i)));
-pcolor(Displacement_Poisson.x, Displacement_Poisson.y, xdisp),shading interp,axis equal, axis tight
+pcolor(Displacement_Poisson.x, Displacement_Poisson.y, xdisp),shading interp,axis equal, axis tight+
 
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
