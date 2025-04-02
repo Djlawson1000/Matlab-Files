@@ -216,11 +216,11 @@ c = colorbar;
 clim([-0.2 0.3]) % Adjust this based on the range seen during steady flow of each test
 set(gca,'color','k',FontSize=f)
 set(gcf,'color','w');
-title('T78 - 1.5 in Up Stream',FontSize=24);
+%title('T78 - 1.5 in Up Stream',FontSize=24);
 xlabel('X (mm)',FontSize=f);
 ylabel('Y (mm)',FontSize=f);
-% xticks([20:20:160]);
-% yticks([20:20:160]);
+xticks([20:40:160]);
+yticks([20:20:160]);
 
 ylabel(c,'X-Displacement (mm)',FontSize=f)
 

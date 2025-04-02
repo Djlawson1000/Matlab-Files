@@ -1,1 +1,1 @@
-New: fixed bug with pco cameras
+New: Several bug fixes and performance improvements
