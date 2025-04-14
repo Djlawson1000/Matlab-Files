@@ -256,19 +256,21 @@ ylabel('Y (mm)',FontSize=f);
 
 ylabel(c,'Displacement Magnitude (mm)', FontSize=f)
 
-%%    mm / Pixel for each Test Run
+%%   %FBPT Plotting Code
 
-% T1:  1.02
-% T2:  1.02
-% T3:  2.00 
-% T13: 0.71
-% T14: -
-% T15: -
-% T17: -
-% T18: 0.71
-% T19: 0.763
+figure
+pcolor(xM + 175, yM +195, scaleFBPT),shading interp,axis equal, axis tight
+c = colorbar;
+clim([-6 4]) % Adjust this based on the range seen during steady flow of each test
+set(gca,'color','k',FontSize=f)
+set(gcf,'color','w');
+% title('T78 - 1.5 in Up Stream',FontSize=24);
+xlabel('X (mm)',FontSize=f);
+ylabel('Y (mm)',FontSize=f);
+xticks([20:40:160]);
+yticks([20:20:160]);
 
-
+ylabel(c,'X-Displacement (mm)',FontSize=f)
 
 
 
